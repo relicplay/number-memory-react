@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Start from './components/Start';
 import Loader from './components/Loader';
+import RandomNumbers from './components/RandomNumbers';
 
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
         : (
           <section className="gamescreen">
 
-            <article id="randomdisplay">{randomNumbers}</article>
+            <RandomNumbers randomNumbers={randomNumbers}/>
 
             {secondsLeft <= 0 ? (
               <article className="controls">

@@ -1,4 +1,4 @@
-const Start = (props: {secondsLeft: number; setSecondsLeft: (value: number) => void;}) => {
+const Loader = (props: {secondsLeft: number; setSecondsLeft: (value: number) => void;}) => {
 
     return (
         <article className="loadingscreen">
@@ -11,4 +11,4 @@ const Start = (props: {secondsLeft: number; setSecondsLeft: (value: number) => v
     )
 };
 
-export default Start;
+export default Loader;
