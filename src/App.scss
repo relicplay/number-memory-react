@@ -1,0 +1,412 @@
+.App {
+  text-align: center;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+$breakingPoint: 768px;
+$bgcol: #364765;
+$placeholderCol: rgba(255,255,255,0.5);
+$titlecol: #fff;
+$loadercol: #3498db;
+$bgcolBox: rgba(255,255,255,0.1);
+$gameoverCol: rgba(255,0,0,0.5);
+
+$boxBorderRadius: 25px 25px 0 0;
+$boxshadow: rgba(255, 255, 255, 0.35) 0px 5px 15px;
+
+$headerFont: 'Oswald', sans-serif;
+$regularFont: 'Roboto Slab', serif;
+
+$headerLarge: 3em;
+$headerMedium: 2em;
+$headerSmall: 1em;
+
+$textSizeRegular: 0.9em;
+$textSizeSmall: 0.5em;
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+
+    font-size: 100%;
+    text-transform: uppercase;
+
+}
+
+::placeholder {
+color: $placeholderCol;
+opacity: 1;
+}
+
+:-ms-input-placeholder {
+color: $placeholderCol;
+}
+
+::-ms-input-placeholder {
+color: $placeholderCol;
+}
+
+
+@mixin setFont($font, $size, $clamp, $txtalign: left, $color: #000) {
+    font-family: $font;
+    font-size: $size; /* fallback font */
+    font-size: $clamp;
+    text-align: $txtalign;
+    color: $color;
+}
+
+@mixin setBackground($background, $position: "center", $size: "cover", $repeat: "no-repeat") {
+    background-image: #{$background};
+    background-position: #{$position};
+    background-size: #{$size};
+    background-repeat: #{$repeat};
+}
+
+@mixin flex-basic($display: flex, $flexFlow: column nowrap, $justifyContent: center, $alignItems: center, $width: 100%) {
+    display: $display;
+    flex-flow: $flexFlow;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+    width: $width;
+}
+
+@mixin screen {
+    @include flex-basic(flex, column nowrap, space-around, center);
+    padding: 2em 0;
+    min-height: 40vh;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: $bgcol;
+    @include setBackground("linear-gradient(to right, transparent, pink, navy)", "center", "cover", "no-repeat");
+}
+
+header {
+    width: 100%;
+    @include flex-basic(flex, row wrap, center);
+    gap: 0 3em;
+    h1 {
+        margin: 0;
+        padding: 0;
+        @include setFont($headerFont, $headerLarge, clamp($headerSmall, 5vw, $headerLarge), center, $titlecol);
+        word-spacing: 0.4em;
+        opacity: 0;
+        animation: fadeIn 2s forwards, moveText 0.7s ease-out;
+        &:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        &:nth-child(3) {
+            animation-delay: 1s;
+        }
+    }
+}
+
+
+main {
+    @include flex-basic();
+    max-width: 1900px;
+}
+
+footer {
+    p {
+        margin: 2em 0 0 0;
+        padding: 0;
+        @include setFont($regularFont, $textSizeRegular, clamp($textSizeSmall, 3vw, $textSizeRegular), center, $titlecol);
+    }
+}
+
+.main-boxshadow {
+    border-radius: $boxBorderRadius;
+    box-shadow: $boxshadow;
+    overflow: hidden;
+}
+
+.wrapper {
+    @include flex-basic();
+    min-width: 280px;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0 2em;
+    @include setBackground("linear-gradient(to bottom, black, transparent, #000)");
+}
+
+button {
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    background-color: transparent;
+    transition: background-color 1s ease-out;
+    @include setFont($headerFont, $headerMedium, clamp($headerSmall, 5vw, $headerMedium), center);
+}
+button:not(.nohover):hover {
+    color: red;
+    background-color: #eee;
+}
+button:disabled,
+button[disabled]{
+  color: rgba(0,0,0,0.3);
+}
+
+
+
+.startscreen {
+    @include screen;
+    button {
+        @include setFont($headerFont, $headerLarge, clamp($headerMedium, 5vw, $headerLarge), center, #000);
+    }
+    .slidercontainer {
+        @include flex-basic($display: flex, $flexFlow: column nowrap, $justifyContent: center, $alignItems: center, $width: 90%);
+        text-align: center;
+        h1 {
+            margin: 0;
+            padding: 0;
+            @include setFont($headerFont, $headerMedium, clamp($headerSmall, 3vw, $headerMedium), center, #000);
+            &:nth-child(3) {
+                color: red;
+            }
+        }
+        input[type=range] {
+            max-width: 500px;
+        }
+    }
+}
+
+
+.loadingscreen {
+    @include screen;
+    span {
+        width: 90%;
+        padding: 0;
+        margin: 0;
+        @include setFont($regularFont, $headerSmall, clamp(0.8em, 4vw, 1.5em), center);
+        font-weight: 700;
+    }
+    button {
+        margin-top: 4em;
+    }
+}
+
+.gamescreen {
+    display: none;
+    flex-flow: column nowrap;
+    background-color: $bgcolBox;
+    width: 100%;
+    #randomdisplay {
+        background-color: #000;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 72px);
+        grid-gap: 5px;
+        justify-content: center;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+        box-shadow: $boxshadow;
+        img {
+            width: 70px;
+            height: auto;
+            opacity: 1;
+            transition: opacity 3s;
+        }
+        .image-hide {
+            opacity: 0;
+        }
+    }
+}
+
+.controls {
+    @include screen;
+    h1 {
+        letter-spacing: 0.2em;
+        margin: 0;
+        padding: 0;
+        @include setFont($headerFont, $headerLarge, clamp($headerMedium, 5vw, $headerLarge), center, rgba(0,0,0,0.8));
+        @include setBackground("linear-gradient(to right, transparent, rgba(255, 255, 255, 0.35), transparent)");
+    }
+    input[type=text] {
+        width: 95%;
+        align-self: center;
+        @include setFont($headerFont, $headerLarge, clamp($headerSmall, 4vw, $headerLarge), center, gold);
+        padding-left: 0.5em;
+        border: 0;
+        background-color: transparent;
+        @include setBackground("linear-gradient(to right, transparent, gold, transparent), linear-gradient(to right, transparent, gold, transparent), linear-gradient(to right, transparent, rgba(0, 0, 0, 0.35), transparent)", "center bottom, center top, center", "100% 2px, 100% 2px, cover");
+        box-shadow: $boxshadow;
+        text-shadow: 2px 2px #000;
+    }
+    .buttonwrapper {
+        @include flex-basic($display: flex, $flexFlow: row wrap, $justifyContent: space-around, $alignItems: center);
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.loader
+{
+    @include flex-basic($display: flex, $flexFlow: column nowrap, $justifyContent: center, $alignItems: center);
+    position: absolute;
+    transform: translate(0,-25%);
+    @include setFont($headerFont, $headerLarge, clamp($headerMedium, 5vw, $headerLarge), center);
+    border: 16px solid #f3f3f3;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    span {
+        @include flex-basic();
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+}
+.loader:before
+{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 16px solid transparent;
+    border-top: 16px solid $loadercol;
+    border-radius: 50%;
+    animation: animate 0.5s linear infinite;
+}
+
+
+
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: flex;
+}
+
+.gameover {
+    background-color: $gameoverCol;
+}
+
+
+input[type=range] {
+    -webkit-appearance: none;
+    margin: 18px 0;
+    width: 100%;
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8.4px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #3071a9;
+    cursor: pointer;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    cursor: pointer;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 3px;
+    background: #ffffff;
+    -webkit-appearance: none;
+    margin-top: -14px;
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #367ebd;
+  }
+  input[type=range]::-moz-range-track {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #3071a9;
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+  }
+  input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+  }
+  input[type=range]::-ms-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+  }
+  input[type=range]::-ms-fill-lower {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #2a6495;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+  }
+  input[type=range]::-ms-fill-upper {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #3071a9;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+  }
+  input[type=range]::-ms-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+  }
+  input[type=range]:focus::-ms-fill-lower {
+    background: #3071a9;
+  }
+  input[type=range]:focus::-ms-fill-upper {
+    background: #367ebd;
+  }
+
+
+
+  
+@keyframes animate
+{
+  0% {transform:rotate(0deg);}
+  100% {transform:rotate(360deg);}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+@keyframes moveText {
+    from {transform: translate(0, -50px);}
+    to {transform: translate(0, 0);}
+}
+
+
+@media only screen and (max-width: $breakingPoint) {
+    header {
+        flex-flow: column nowrap;
+    }
+    .gamescreen {
+        #randomdisplay {
+            grid-template-columns: repeat(auto-fill, 32px);
+            grid-gap: 2px;
+            img {
+                width: 30px;
+            }
+        }
+    }
+}
