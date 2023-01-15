@@ -15,19 +15,25 @@ function App() {
 
   const [level, setLevel] = useState(1);
   const [gameOn, setGameOn] = useState(0);
+  const [input, setInput] = useState('');
   const [secondsLeft, setSecondsLeft] = useState(0);
   const [resultMsg, setResultMsg] = useState('');
   const [randomNumbers, setRandomNumbers] = useState<number[]>([]);
 
-  const changeLevel = (value: string) => {
-    setLevel(Number(value));
-  }
-
   const startGame = () => {
+    setInput('');
     setGameOn(1);
     setSecondsLeft(10 + Math.floor(level * 0.1));
     setResultMsg(`Level ${level}`);
     setRandomNumbers(generateRandomArray(3+level));
+  }
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(event.target.value);
+  }
+
+  const changeLevel = (value: string) => {
+    setLevel(Number(value));
   }
 
   useEffect(() => {
@@ -38,6 +44,10 @@ function App() {
       return () => clearInterval(intervalId);
     }
   }, [secondsLeft]);
+
+  useEffect(() => {
+    console.log('checktime!');
+  }, [input]);
 
 
   return (
@@ -61,6 +71,9 @@ function App() {
               id="inputfield"
               placeholder="Enter correct number sequence..."
               autoComplete="off"
+              value={input}
+              onChange={handleChange}
+              maxLength={randomNumbers.length}
               /*
               onselectstart="return false"
               oncut="return false"
