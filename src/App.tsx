@@ -7,6 +7,9 @@ import Start from './components/Start';
 import Loader from './components/Loader';
 import RandomNumbers from './components/RandomNumbers';
 
+const generateRandomArray = (iterations: number) => {
+  return Array.from({ length: iterations }, () => Math.floor(Math.random() * 9) + 1);
+}
 
 function App() {
 
@@ -14,7 +17,7 @@ function App() {
   const [gameOn, setGameOn] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState(0);
   const [resultMsg, setResultMsg] = useState('');
-  const [randomNumbers, setRandomNumbers] = useState([1,4,5,9,9,5,1,2,6]);
+  const [randomNumbers, setRandomNumbers] = useState<number[]>([]);
 
   const changeLevel = (value: string) => {
     setLevel(Number(value));
@@ -24,6 +27,7 @@ function App() {
     setGameOn(1);
     setSecondsLeft(10 + Math.floor(level * 0.1));
     setResultMsg(`Level ${level}`);
+    setRandomNumbers(generateRandomArray(3+level));
   }
 
   useEffect(() => {
@@ -46,7 +50,7 @@ function App() {
         )
         : (
           <section className="gamescreen">
-
+            
             <RandomNumbers randomNumbers={randomNumbers}/>
 
             {secondsLeft <= 0 ? (
@@ -68,7 +72,7 @@ function App() {
               />
                 <div className="buttonwrapper">
                     <button className="button" id="retrybutton">Retry</button>
-                    <button className="button" id="resetbutton">Reset</button>
+                    <button className="button" id="resetbutton" onClick={startGame}>Reset</button>
                     <button className="button" id="nextbutton">Next</button>
                 </div>
               </article>
