@@ -1,4 +1,3 @@
-import { isShorthandPropertyAssignment } from "typescript";
 
 const Start = (props: {level: number; changeLevel: (value: string) => void; startGame: () => void;}) => {
 

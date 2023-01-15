@@ -10,16 +10,18 @@ import Loader from './components/Loader';
 function App() {
 
   const [level, setLevel] = useState(1);
-  const [gameStatus, setGameStatus] = useState(0);
+  const [gameOn, setGameOn] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState(0);
+  const [resultMsg, setResultMsg] = useState('');
 
   const changeLevel = (value: string) => {
     setLevel(Number(value));
   }
 
   const startGame = () => {
-    setGameStatus(1);
+    setGameOn(1);
     setSecondsLeft(10 + Math.floor(level * 0.1));
+    setResultMsg(`Level ${level}`);
   }
 
   useEffect(() => {
@@ -35,9 +37,9 @@ function App() {
   return (
     <div className="wrapper">
         <Header />
-        <main className={`${gameStatus > 0 && 'main-boxshadow'}`}>
+        <main className={`${gameOn > 0 && 'main-boxshadow'}`}>
 
-        {gameStatus < 1 ? (
+        {!gameOn ? (
           <Start level={level} changeLevel={changeLevel} startGame={startGame} />
         )
         : (
@@ -45,9 +47,9 @@ function App() {
 
             <article id="randomdisplay"></article>
 
-            {gameStatus > 1 ? (
+            {secondsLeft <= 0 ? (
               <article className="controls">
-              <h1 id="resultmessage"></h1>
+              <h1 id="resultmessage">{resultMsg}</h1>
 
               <input type="text"
               id="inputfield"
