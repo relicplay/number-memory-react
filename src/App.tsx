@@ -11,6 +11,10 @@ const generateRandomArray = (iterations: number) => {
   return Array.from({ length: iterations }, () => Math.floor(Math.random() * 9) + 1);
 }
 
+const onlyAllowNumbers = (str: string) => {
+  return str.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');
+}
+
 function App() {
 
   const [level, setLevel] = useState(1);
@@ -29,7 +33,7 @@ function App() {
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(event.target.value);
+    setInput(onlyAllowNumbers(event.target.value));
   }
 
   const changeLevel = (value: string) => {
