@@ -13,6 +13,7 @@ function App() {
   const [gameOn, setGameOn] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState(0);
   const [resultMsg, setResultMsg] = useState('');
+  const [randomNumbers, setRandomNumbers] = useState([1,4,5,9,9,5,1,2,6]);
 
   const changeLevel = (value: string) => {
     setLevel(Number(value));
@@ -45,7 +46,7 @@ function App() {
         : (
           <section className="gamescreen">
 
-            <article id="randomdisplay"></article>
+            <article id="randomdisplay">{randomNumbers}</article>
 
             {secondsLeft <= 0 ? (
               <article className="controls">
