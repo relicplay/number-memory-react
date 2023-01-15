@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.scss';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Start from './components/Start';
 import Loader from './components/Loader';
-import RandomNumbers from './components/RandomNumbers';
+import Display from './components/Display';
 
 const generateRandomArray = (iterations: number) => {
   return Array.from({ length: iterations }, () => Math.floor(Math.random() * 9) + 1);
@@ -50,8 +50,8 @@ function App() {
         )
         : (
           <section className="gamescreen">
-            
-            <RandomNumbers randomNumbers={randomNumbers}/>
+
+            <Display randomNumbers={randomNumbers}/>
 
             {secondsLeft <= 0 ? (
               <article className="controls">
