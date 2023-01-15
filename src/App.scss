@@ -192,7 +192,7 @@ button[disabled]{
 }
 
 .gamescreen {
-    display: none;
+    display: flex;
     flex-flow: column nowrap;
     background-color: $bgcolBox;
     width: 100%;
