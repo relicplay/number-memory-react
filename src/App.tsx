@@ -3,6 +3,7 @@ import './App.scss';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Start from './components/Start';
 
 
 function App() {
@@ -18,14 +19,7 @@ function App() {
         <Header />
         <main>
 
-        <section className="startscreen">
-            <button id="startbutton" className="button">Start</button>
-            <div className="slidercontainer">
-                <h1>Begin at Level:</h1>
-                <input type="range" min="1" max="100" value={level} className="slider" id="levelslider" step="1" autoComplete="off" onChange={(e) => {changeLevel(e.target.value);}} />
-                <h1 id="leveldisplay"></h1>
-            </div>
-        </section>
+        <Start level={level} changeLevel={changeLevel} />
 
         </main>
         <Footer />
