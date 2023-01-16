@@ -8,9 +8,9 @@ import Start from './components/Start';
 import Loader from './components/Loader';
 import Display from './components/Display';
 import Buttons from './components/Buttons';
+import Controls from './components/Controls';
 
 const maxLevel = 100;
-
 
 function App() {
 
@@ -21,7 +21,6 @@ function App() {
   const [score, setScore] = useState(0);
   const [input, setInput] = useState('');
   const [secondsLeft, setSecondsLeft] = useState(0);
-  const [resultMsg, setResultMsg] = useState('');
   const [randomNumbers, setRandomNumbers] = useState<number[]>([]);
 
   const startGame: (newNumbers?: boolean) => void = (newNumbers = true) => {
@@ -29,7 +28,6 @@ function App() {
     setInput('');
     setGameOn(1);
     setSecondsLeft(10 + Math.floor(level * 0.1));
-    setResultMsg(`Level ${level}`);
     newNumbers && setRandomNumbers(generateRandomArray(3+level));
   }
 
@@ -71,7 +69,7 @@ function App() {
 
             {secondsLeft <= 0 ? (
               <article className="controls">
-              <h1 id="resultmessage">{resultMsg}</h1>
+                <Controls level={level}/>
 
               <input type="text"
               id="inputfield"
