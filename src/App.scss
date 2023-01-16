@@ -142,14 +142,15 @@ button {
     background-color: transparent;
     transition: background-color 1s ease-out;
     @include setFont($headerFont, $headerMedium, clamp($headerSmall, 5vw, $headerMedium), center);
-}
-button:not(.nohover):hover {
-    color: red;
-    background-color: #eee;
-}
-button:disabled,
-button[disabled]{
-  color: rgba(0,0,0,0.3);
+    &:hover {
+        color: red;
+        background-color: #eee;
+    }
+    &:disabled,
+        &[disabled]{
+        color: rgba(0,0,0,0.3);
+        background-color: transparent;
+    }
 }
 
 
