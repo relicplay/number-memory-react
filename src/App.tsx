@@ -7,6 +7,8 @@ import Start from './components/Start';
 import Loader from './components/Loader';
 import Display from './components/Display';
 
+const maxLevel = 100;
+
 const generateRandomArray = (iterations: number) => {
   return Array.from({ length: iterations }, () => Math.floor(Math.random() * 9) + 1);
 }
@@ -60,7 +62,7 @@ function App() {
         <main className={`${gameOn > 0 && 'main-boxshadow'}`}>
 
         {!gameOn ? (
-          <Start level={level} changeLevel={changeLevel} startGame={startGame} />
+          <Start level={level} changeLevel={changeLevel} startGame={startGame} maxLevel={maxLevel} />
         )
         : (
           <section className="gamescreen">
