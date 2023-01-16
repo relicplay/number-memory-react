@@ -35,7 +35,6 @@ function App() {
     if (guessedNumber != actualNumber) {setgameStatus(3);return;}
     score < input.length && setScore(input.length);
     input.length >= randomNumbers.length && setgameStatus(4);
-  //guessedNumber == actualNumber ? getPoint(userInputField.value.length-1) : gameResult(userInputField.value.length, false);
   }
 
   useEffect(() => {
@@ -47,12 +46,12 @@ function App() {
   }, [level]);
 
   useEffect(() => {
-    //1=regular mode, 2=restart mode, 3=fail, 4=success:
+    //1=reset mode, 2=retry mode, 3=fail, 4=success:
     if (gameStatus == 1 || gameStatus == 2) {
       setScore(0);
       setInput('');
       setSecondsLeft(10 + Math.floor(level * 0.1));
-      gameStatus != 2 && setRandomNumbers(generateRandomArray(3+level));
+      gameStatus == 1 && setRandomNumbers(generateRandomArray(3+level));
       setgameStatus(0);
     }
   }, [gameStatus]);
@@ -84,14 +83,27 @@ function App() {
               maxLength={randomNumbers.length}
               ref={inputRef}
               disabled={gameStatus >= 3}
-              /*
-              onselectstart="return false"
-              oncut="return false"
-              onCopy="return false"
-              onpaste="return false"
-              ondrag="return false"
-              ondrop="return false"
-              */
+              autoFocus
+              onPaste={(e)=>{
+                e.preventDefault()
+                return false;
+              }}
+              onCopy={(e)=>{
+                e.preventDefault()
+                return false;
+              }}
+              onCut={(e)=>{
+                e.preventDefault()
+                return false;
+              }}
+              onDrop={(e)=>{
+                e.preventDefault()
+                return false;
+              }}
+              onDrag={(e)=>{
+                e.preventDefault()
+                return false;
+              }}
               />
 
                 <Buttons score={score} changeLevel={changeLevel} gameStatus={gameStatus} setgameStatus={setgameStatus} level={level} maxLevel={maxLevel} randomNumbers={randomNumbers}/>
