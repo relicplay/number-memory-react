@@ -66,7 +66,7 @@ function App() {
         : (
           <section className="gamescreen">
 
-            <Display randomNumbers={randomNumbers}/>
+            <Display randomNumbers={randomNumbers} gameOn={gameOn} secondsLeft={secondsLeft}/>
 
             {secondsLeft <= 0 ? (
               <article className="controls">

@@ -1,4 +1,4 @@
-const Display = (props: {randomNumbers: Array<number>}) => {
+const Display = (props: {randomNumbers: Array<number>; gameOn: number; secondsLeft: number}) => {
 
     return (
         <article id="randomdisplay">
@@ -7,7 +7,13 @@ const Display = (props: {randomNumbers: Array<number>}) => {
             const imgPath = `images/${e}.png`;
             const id = `image${index}`;
         return (
-          <img key={index} src={imgPath} id={id} alt="image" className="image" />
+          <img
+          key={index}
+          src={imgPath}
+          id={id}
+          alt="image"
+          className={`image ${props.gameOn && props.secondsLeft <= 0 ? 'image-hide' : ''}`}
+          />
         );
       })}
 
