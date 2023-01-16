@@ -1,4 +1,6 @@
-const Display = (props: {randomNumbers: Array<number>; gameOn: number; secondsLeft: number; score: number}) => {
+const Display = (props: {randomNumbers: Array<number>; gameStatus: number; secondsLeft: number; score: number}) => {
+
+  //props.gameStatus == 1 && 
 
     return (
         <article id="randomdisplay">
@@ -12,7 +14,7 @@ const Display = (props: {randomNumbers: Array<number>; gameOn: number; secondsLe
           src={imgPath}
           id={id}
           alt="image"
-          className={`image ${props.gameOn && props.secondsLeft <= 0 && props.score <= index ? 'image-hide' : ''}`}
+          className={`image ${props.secondsLeft <= 0 && props.score <= index ? 'image-hide' : ''}`}
           />
         );
       })}

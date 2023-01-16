@@ -17,32 +17,25 @@ function App() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [level, setLevel] = useState(1);
-  const [gameOn, setGameOn] = useState(0);
+  const [gameStatus, setgameStatus] = useState(-1);
   const [score, setScore] = useState(0);
   const [input, setInput] = useState('');
   const [secondsLeft, setSecondsLeft] = useState(0);
   const [randomNumbers, setRandomNumbers] = useState<number[]>([]);
-
-  const startGame: (newNumbers?: boolean) => void = (newNumbers = true) => {
-    setScore(0);
-    setInput('');
-    setGameOn(1);
-    setSecondsLeft(10 + Math.floor(level * 0.1));
-    newNumbers && setRandomNumbers(generateRandomArray(3+level));
-  }
-
-  const compareNumbers = (guessedNumber: number, actualNumber: number) => {
-    if (guessedNumber == actualNumber && score < input.length) {setScore(input.length);}
-  //guessedNumber == actualNumber ? getPoint(userInputField.value.length-1) : gameResult(userInputField.value.length, false);
-  }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(onlyAllowNumbers(event.target.value));
   }
 
   const changeLevel = (value: number) => {
-    //setLevel(Number(value));
     setLevel(value);
+  }
+
+  const compareNumbers = (guessedNumber: number, actualNumber: number) => {
+    if (guessedNumber != actualNumber) {setgameStatus(3);return;}
+    score < input.length && setScore(input.length);
+    input.length >= randomNumbers.length && setgameStatus(4);
+  //guessedNumber == actualNumber ? getPoint(userInputField.value.length-1) : gameResult(userInputField.value.length, false);
   }
 
   useEffect(() => {
@@ -50,26 +43,37 @@ function App() {
   }, [input]);
 
   useEffect(() => {
-    gameOn > 0 && startGame();
+    gameStatus > 0 && setgameStatus(1);
   }, [level]);
+
+  useEffect(() => {
+    //1=regular mode, 2=restart mode, 3=fail, 4=success:
+    if (gameStatus == 1 || gameStatus == 2) {
+      setScore(0);
+      setInput('');
+      setSecondsLeft(10 + Math.floor(level * 0.1));
+      gameStatus != 2 && setRandomNumbers(generateRandomArray(3+level));
+      setgameStatus(0);
+    }
+  }, [gameStatus]);
 
 
   return (
-    <div className="wrapper">
+    <div className={`wrapper ${gameStatus == 3 && 'gameover'}`}>
         <Header />
-        <main className={`${gameOn > 0 && 'main-boxshadow'}`}>
+        <main className={`${gameStatus > 0 && 'main-boxshadow'}`}>
 
-        {gameOn < 1 ? (
-          <Start level={level} changeLevel={changeLevel} startGame={startGame} maxLevel={maxLevel} />
+        {gameStatus < 0 ? (
+          <Start level={level} changeLevel={changeLevel} setgameStatus={setgameStatus} maxLevel={maxLevel} />
         )
         : (
           <section className="gamescreen">
 
-            <Display randomNumbers={randomNumbers} gameOn={gameOn} secondsLeft={secondsLeft} score={score}/>
+            <Display randomNumbers={randomNumbers} gameStatus={gameStatus} secondsLeft={secondsLeft} score={score}/>
 
             {secondsLeft <= 0 ? (
               <article className="controls">
-                <Controls level={level}/>
+                <Controls level={level} gameStatus={gameStatus}/>
 
               <input type="text"
               id="inputfield"
@@ -79,6 +83,7 @@ function App() {
               onChange={handleChange}
               maxLength={randomNumbers.length}
               ref={inputRef}
+              disabled={gameStatus >= 3}
               /*
               onselectstart="return false"
               oncut="return false"
@@ -89,7 +94,7 @@ function App() {
               */
               />
 
-                <Buttons score={score} changeLevel={changeLevel} startGame={startGame} level={level} maxLevel={maxLevel} randomNumbers={randomNumbers}/>
+                <Buttons score={score} changeLevel={changeLevel} gameStatus={gameStatus} setgameStatus={setgameStatus} level={level} maxLevel={maxLevel} randomNumbers={randomNumbers}/>
 
               </article>
             )
