@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.scss';
+import { generateRandomArray, onlyAllowNumbers } from './scripts/script';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -10,13 +11,6 @@ import Buttons from './components/Buttons';
 
 const maxLevel = 100;
 
-const generateRandomArray = (iterations: number) => {
-  return Array.from({ length: iterations }, () => Math.floor(Math.random() * 9) + 1);
-}
-
-const onlyAllowNumbers = (str: string) => {
-  return str.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');
-}
 
 function App() {
 
@@ -67,7 +61,7 @@ function App() {
         <Header />
         <main className={`${gameOn > 0 && 'main-boxshadow'}`}>
 
-        {!gameOn ? (
+        {gameOn < 1 ? (
           <Start level={level} changeLevel={changeLevel} startGame={startGame} maxLevel={maxLevel} />
         )
         : (
