@@ -29,13 +29,13 @@ function App() {
   const [resultMsg, setResultMsg] = useState('');
   const [randomNumbers, setRandomNumbers] = useState<number[]>([]);
 
-  const startGame = () => {
+  const startGame: (newNumbers?: boolean) => void = (newNumbers = true) => {
     setScore(0);
     setInput('');
     setGameOn(1);
     setSecondsLeft(10 + Math.floor(level * 0.1));
     setResultMsg(`Level ${level}`);
-    setRandomNumbers(generateRandomArray(3+level));
+    newNumbers && setRandomNumbers(generateRandomArray(3+level));
   }
 
   const compareNumbers = (guessedNumber: number, actualNumber: number) => {
@@ -96,8 +96,8 @@ function App() {
               */
               />
                 <div className="buttonwrapper">
-                    <button className="button" id="retrybutton" disabled={score >= randomNumbers.length}>Retry</button>
-                    <button className="button" id="resetbutton" onClick={startGame} disabled={score >= randomNumbers.length}>Reset</button>
+                    <button className="button" id="retrybutton" onClick={() => startGame(false)} disabled={score >= randomNumbers.length}>Retry</button>
+                    <button className="button" id="resetbutton" onClick={() => startGame()} disabled={score >= randomNumbers.length}>Reset</button>
                     <button className="button" id="nextbutton" onClick={() => changeLevel(level + 1)} disabled={score < randomNumbers.length}>Next</button>
                 </div>
               </article>
