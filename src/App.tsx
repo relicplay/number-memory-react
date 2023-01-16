@@ -72,42 +72,8 @@ function App() {
 
             {secondsLeft <= 0 ? (
               <article className="controls">
-                <Controls level={level} gameStatus={gameStatus}/>
-
-              <input type="text"
-              id="inputfield"
-              placeholder="Enter correct number sequence..."
-              autoComplete="off"
-              value={input}
-              onChange={handleChange}
-              maxLength={randomNumbers.length}
-              ref={inputRef}
-              disabled={gameStatus >= 3}
-              autoFocus
-              onPaste={(e)=>{
-                e.preventDefault()
-                return false;
-              }}
-              onCopy={(e)=>{
-                e.preventDefault()
-                return false;
-              }}
-              onCut={(e)=>{
-                e.preventDefault()
-                return false;
-              }}
-              onDrop={(e)=>{
-                e.preventDefault()
-                return false;
-              }}
-              onDrag={(e)=>{
-                e.preventDefault()
-                return false;
-              }}
-              />
-
+                <Controls level={level} gameStatus={gameStatus} input={input} randomNumbers={randomNumbers} inputRef={inputRef} handleChange={handleChange}/>
                 <Buttons score={score} changeLevel={changeLevel} gameStatus={gameStatus} setgameStatus={setgameStatus} level={level} maxLevel={maxLevel} randomNumbers={randomNumbers}/>
-
               </article>
             )
             : (
