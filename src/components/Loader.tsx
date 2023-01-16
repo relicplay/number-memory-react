@@ -1,4 +1,15 @@
+import { useEffect } from 'react';
+
 const Loader = (props: {secondsLeft: number; setSecondsLeft: (value: number) => void;}) => {
+
+    useEffect(() => {
+        if (props.secondsLeft > 0) {
+          const intervalId = setInterval(() => {
+            props.setSecondsLeft(props.secondsLeft - 1);
+          }, 1000);
+          return () => clearInterval(intervalId);
+        }
+    }, [props.secondsLeft]);
 
     return (
         <article className="loadingscreen">

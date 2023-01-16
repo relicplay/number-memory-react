@@ -43,15 +43,6 @@ function App() {
   }
 
   useEffect(() => {
-    if (secondsLeft > 0) {
-      const intervalId = setInterval(() => {
-        setSecondsLeft(currentCount => {return currentCount - 1});
-      }, 1000);
-      return () => clearInterval(intervalId);
-    }
-  }, [secondsLeft]);
-
-  useEffect(() => {
     console.log('checktime!');
   }, [input]);
 
