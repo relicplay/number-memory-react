@@ -17,7 +17,15 @@ const onlyAllowNumbers = (str: string) => {
   return str.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');
 }
 
+const compareNumbers = (guessedNumber: number, actualNumber: number) => {
+  console.log('Guessed number: ', guessedNumber);
+  console.log('Actual number: ', actualNumber);
+  //guessedNumber == actualNumber ? getPoint(userInputField.value.length-1) : gameResult(userInputField.value.length, false);
+}
+
 function App() {
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [level, setLevel] = useState(1);
   const [gameOn, setGameOn] = useState(0);
@@ -43,7 +51,7 @@ function App() {
   }
 
   useEffect(() => {
-    console.log('checktime!');
+    input.length > 0 && compareNumbers(Number(inputRef.current?.value[input.length-1]), randomNumbers[input.length-1]);
   }, [input]);
 
 
@@ -71,6 +79,7 @@ function App() {
               value={input}
               onChange={handleChange}
               maxLength={randomNumbers.length}
+              ref={inputRef}
               /*
               onselectstart="return false"
               oncut="return false"
