@@ -284,6 +284,10 @@ button {
     display: flex;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 .gameover {
     background-color: $gameoverCol;
 }

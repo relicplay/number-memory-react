@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Start from './components/Start';
 import Loader from './components/Loader';
 import Display from './components/Display';
+import Buttons from './components/Buttons';
 
 const maxLevel = 100;
 
@@ -95,11 +96,9 @@ function App() {
               ondrop="return false"
               */
               />
-                <div className="buttonwrapper">
-                    <button className="button" id="retrybutton" onClick={() => startGame(false)} disabled={score >= randomNumbers.length}>Retry</button>
-                    <button className="button" id="resetbutton" onClick={() => startGame()} disabled={score >= randomNumbers.length}>Reset</button>
-                    <button className="button" id="nextbutton" onClick={() => changeLevel(level + 1)} disabled={score < randomNumbers.length}>Next</button>
-                </div>
+
+                <Buttons score={score} changeLevel={changeLevel} startGame={startGame} level={level} maxLevel={maxLevel} randomNumbers={randomNumbers}/>
+
               </article>
             )
             : (
