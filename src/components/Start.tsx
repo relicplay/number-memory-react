@@ -1,12 +1,12 @@
 
-const Start = (props: {level: number; changeLevel: (value: string) => void; startGame: () => void; maxLevel: number}) => {
+const Start = (props: {level: number; changeLevel: (value: number) => void; startGame: () => void; maxLevel: number}) => {
 
     return (<section className="startscreen">
     <button id="startbutton" className="button" onClick={props.startGame}>Start</button>
     <div className="slidercontainer">
         <h1>Begin at Level:</h1>
         <input type="range" min="1" max={props.maxLevel} value={props.level} className="slider" id="levelslider" step="1" autoComplete="off" 
-        onChange={(e) => {props.changeLevel(e.target.value);}}
+        onChange={(e) => {props.changeLevel(Number(e.target.value));}}
         />
         <h1 id="leveldisplay">{props.level}</h1>
     </div>
