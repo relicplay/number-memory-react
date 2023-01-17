@@ -1,4 +1,10 @@
 
+
+const restrictInput = (e: any) => {
+  e.preventDefault();
+  return false;
+}
+
 const Controls = (
   props:
     {
@@ -33,26 +39,11 @@ const Controls = (
               ref={props.inputRef}
               disabled={props.gameStatus >= 3}
               autoFocus
-              onPaste={(e)=>{
-                e.preventDefault()
-                return false;
-              }}
-              onCopy={(e)=>{
-                e.preventDefault()
-                return false;
-              }}
-              onCut={(e)=>{
-                e.preventDefault()
-                return false;
-              }}
-              onDrop={(e)=>{
-                e.preventDefault()
-                return false;
-              }}
-              onDrag={(e)=>{
-                e.preventDefault()
-                return false;
-              }}
+              onPaste={(e) => restrictInput(e)}
+              onCopy={(e) => restrictInput(e)}
+              onCut={(e) => restrictInput(e)}
+              onDrop={(e) => restrictInput(e)}
+              onDrag={(e) => restrictInput(e)}
               />
               </>
     )
