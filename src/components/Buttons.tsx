@@ -2,7 +2,7 @@
 //props.score >= props.randomNumbers.length
 //disabled={props.score < props.randomNumbers.length}
 
-const Buttons = (props: {score: number; gameStatus: number; nextLevel: (value: number) => void; setgameStatus: (value: number) => void; level: number; maxLevel: number; randomNumbers: Array<number>;}) => {
+const Buttons = (props: {score: number; gameStatus: number; changeLevel: (value: number) => void; setgameStatus: (value: number) => void; level: number; maxLevel: number; randomNumbers: Array<number>;}) => {
 
     return (
         <div className="buttonwrapper">
@@ -15,7 +15,7 @@ const Buttons = (props: {score: number; gameStatus: number; nextLevel: (value: n
             <button
             className={`button ${props.level > props.maxLevel ? 'hidden' : ''}`}
             id="nextbutton"
-            onClick={() => props.nextLevel(props.level + 1)}
+            onClick={() => props.changeLevel(props.level + 1)}
             disabled={props.gameStatus <= 3}
             >
                 Next

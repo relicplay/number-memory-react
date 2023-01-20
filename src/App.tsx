@@ -27,8 +27,8 @@ function App() {
     setInput(onlyAllowNumbers(event.target.value));
   }
 
-  const nextLevel = () => {
-    setLevel((l) => l + 1);
+  const changeLevel = (value: number) => {
+    setLevel(value);
   }
 
   const compareNumbers = (guessedNumber: number, actualNumber: number) => {
@@ -63,7 +63,7 @@ function App() {
         <main className={`${gameStatus > 0 && 'main-boxshadow'}`}>
 
         {gameStatus < 0 ? (
-          <Start level={level} nextLevel={nextLevel} setgameStatus={setgameStatus} maxLevel={maxLevel} />
+          <Start level={level} changeLevel={changeLevel} setgameStatus={setgameStatus} maxLevel={maxLevel} />
         )
         : (
           <section className="gamescreen">
@@ -73,7 +73,7 @@ function App() {
             {secondsLeft <= 0 ? (
               <article className="controls">
                 <Controls level={level} gameStatus={gameStatus} input={input} randomNumbers={randomNumbers} inputRef={inputRef} handleChange={handleChange}/>
-                <Buttons score={score} nextLevel={nextLevel} gameStatus={gameStatus} setgameStatus={setgameStatus} level={level} maxLevel={maxLevel} randomNumbers={randomNumbers}/>
+                <Buttons score={score} changeLevel={changeLevel} gameStatus={gameStatus} setgameStatus={setgameStatus} level={level} maxLevel={maxLevel} randomNumbers={randomNumbers}/>
               </article>
             )
             : (
