@@ -14,6 +14,9 @@ const maxLevel = 100;
 
 function App() {
 
+  //change type in function from any to correct one!
+  //optimize code below + components
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [level, setLevel] = useState(1);
@@ -46,7 +49,7 @@ function App() {
   }, [level]);
 
   useEffect(() => {
-    //1=reset mode, 2=retry mode, 3=fail, 4=success:
+    //1=reset mode, 2=retry mode
     if (gameStatus == 1 || gameStatus == 2) {
       setScore(0);
       setInput('');

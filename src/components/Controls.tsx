@@ -1,6 +1,6 @@
 
 
-const restrictInput = (e: any) => {
+const restrictInput = (e: React.FormEvent<HTMLInputElement>) => {
   e.preventDefault();
   return false;
 }
