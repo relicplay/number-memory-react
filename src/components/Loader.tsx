@@ -1,6 +1,11 @@
 import { useEffect } from 'react';
 
-const Loader = (props: {secondsLeft: number; setSecondsLeft: (value: number) => void;}) => {
+const Loader = (
+  props: {
+    secondsLeft: number;
+    setSecondsLeft: (value: number) => void;
+  }
+  ) => {
 
     useEffect(() => {
         if (props.secondsLeft > 0) {

@@ -1,4 +1,11 @@
-const Display = (props: {randomNumbers: Array<number>; gameStatus: number; secondsLeft: number; score: number}) => {
+const Display = (
+  props: {
+    randomNumbers: number[]; //Array<number>
+    gameStatus: number;
+    secondsLeft: number;
+    score: number;
+  }
+  ) => {
 
   //props.gameStatus == 1 && 
 

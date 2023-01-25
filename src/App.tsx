@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.scss';
 import { generateRandomArray, onlyAllowNumbers } from './scripts/script';
+import { useInputEffect, useLevelEffect } from './scripts/myUseEffects';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -37,14 +38,12 @@ function App() {
     input.length >= randomNumbers.length && setgameStatus(4);
   }
 
-  useEffect(() => {
-    input.length > 0 && compareNumbers(Number(inputRef.current?.value[input.length-1]), randomNumbers[input.length-1]);
-  }, [input]);
+  
+  useInputEffect(input, inputRef, compareNumbers, randomNumbers);
 
-  useEffect(() => {
-    gameStatus > 0 && setgameStatus(1);
-  }, [level]);
+  useLevelEffect(gameStatus, level, setgameStatus);
 
+  
   useEffect(() => {
     //1=reset mode, 2=retry mode
     if (gameStatus == 1 || gameStatus == 2) {
@@ -55,6 +54,7 @@ function App() {
       setgameStatus(0);
     }
   }, [gameStatus]);
+  
 
 
   return (
@@ -67,7 +67,6 @@ function App() {
         )
         : (
           <section className="gamescreen">
-
             <Display randomNumbers={randomNumbers} gameStatus={gameStatus} secondsLeft={secondsLeft} score={score}/>
 
             {secondsLeft <= 0 ? (
@@ -80,10 +79,8 @@ function App() {
               <Loader secondsLeft={secondsLeft} setSecondsLeft={setSecondsLeft} />
             )
             }
-
           </section>
         )}
-
         </main>
         <Footer />
     </div>

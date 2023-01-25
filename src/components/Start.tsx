@@ -1,5 +1,12 @@
 
-const Start = (props: {level: number; changeLevel: (value: number) => void; setgameStatus: (value: number) => void; maxLevel: number}) => {
+const Start = (
+    props: {
+        level: number;
+        changeLevel: (value: number) => void;
+        setgameStatus: (value: number) => void;
+        maxLevel: number;
+    }
+    ) => {
 
     return (<section className="startscreen">
     <button id="startbutton" className="button" onClick={() => props.setgameStatus(1)}>Start</button>
