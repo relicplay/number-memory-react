@@ -44,3 +44,18 @@ export const useGameStatusEffect = (
     }
   }, [gameStatus]);
 }
+
+
+export const useTimerEffect = (
+  secondsLeft: number,
+  setSecondsLeft: (value: number) => void
+) => {
+useEffect(() => {
+  if (secondsLeft > 0) {
+    const intervalId = setInterval(() => {
+      setSecondsLeft(secondsLeft - 1);
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }
+}, [secondsLeft]);
+}

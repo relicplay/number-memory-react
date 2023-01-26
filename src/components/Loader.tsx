@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useTimerEffect } from '../scripts/myUseEffects';
 
 const Loader = (
   props: {
@@ -7,14 +7,7 @@ const Loader = (
   }
   ) => {
 
-    useEffect(() => {
-        if (props.secondsLeft > 0) {
-          const intervalId = setInterval(() => {
-            props.setSecondsLeft(props.secondsLeft - 1);
-          }, 1000);
-          return () => clearInterval(intervalId);
-        }
-    }, [props.secondsLeft]);
+    useTimerEffect(props.secondsLeft, props.setSecondsLeft);
 
     return (
         <article className="loadingscreen">

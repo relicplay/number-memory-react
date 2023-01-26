@@ -1,9 +1,4 @@
-
-
-const restrictInput = (e: React.FormEvent<HTMLInputElement>) => {
-  e.preventDefault();
-  return false;
-}
+import { restrictInput } from '../scripts/script';
 
 const Controls = (
   props:

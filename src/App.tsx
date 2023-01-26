@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import './App.scss';
 import { generateRandomArray, onlyAllowNumbers } from './scripts/script';
 import { useInputEffect, useLevelEffect, useGameStatusEffect } from './scripts/myUseEffects';
+//import { handleChange } from './scripts/myStates';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -24,9 +25,11 @@ function App() {
   const [secondsLeft, setSecondsLeft] = useState(0);
   const [randomNumbers, setRandomNumbers] = useState<number[]>([]);
 
+  
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(onlyAllowNumbers(event.target.value));
   }
+  
 
   const changeLevel = (value: number) => {
     setLevel(value);
