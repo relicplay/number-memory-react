@@ -1,7 +1,4 @@
 
-//props.score >= props.randomNumbers.length
-//disabled={props.score < props.randomNumbers.length}
-
 const Buttons = (
     props: {
         score: number;
@@ -10,7 +7,7 @@ const Buttons = (
         setgameStatus: (value: number) => void;
         level: number;
         maxLevel: number;
-        randomNumbers: number[]; //Array<number>
+        randomNumbers: number[];
     }
 ) => {
 
