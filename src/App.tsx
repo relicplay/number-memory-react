@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.scss';
 import { generateRandomArray, onlyAllowNumbers } from './scripts/script';
-import { useInputEffect, useLevelEffect } from './scripts/myUseEffects';
+import { useInputEffect, useLevelEffect, useGameStatusEffect } from './scripts/myUseEffects';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -39,21 +39,10 @@ function App() {
   }
 
   
+  //UseEffects:
   useInputEffect(input, inputRef, compareNumbers, randomNumbers);
-
   useLevelEffect(gameStatus, level, setgameStatus);
-
-  
-  useEffect(() => {
-    //1=reset mode, 2=retry mode
-    if (gameStatus == 1 || gameStatus == 2) {
-      setScore(0);
-      setInput('');
-      setSecondsLeft(10 + Math.floor(level * 0.1));
-      gameStatus == 1 && setRandomNumbers(generateRandomArray(3+level));
-      setgameStatus(0);
-    }
-  }, [gameStatus]);
+  useGameStatusEffect(gameStatus, level, setScore, setInput, setSecondsLeft, setRandomNumbers, setgameStatus, generateRandomArray);
   
 
 

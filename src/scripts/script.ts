@@ -1,7 +1,7 @@
 
 
-export const generateRandomArray = (iterations: number) => {
-    return Array.from({ length: iterations }, () => Math.floor(Math.random() * 9) + 1);
+export const generateRandomArray = (value: number) => {
+    return Array.from({ length: value }, () => Math.floor(Math.random() * 9) + 1);
 }
 
 export const onlyAllowNumbers = (str: string) => {

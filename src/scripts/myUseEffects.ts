@@ -22,3 +22,25 @@ export const useLevelEffect = (
     gameStatus > 0 && setgameStatus(1);
   }, [level]);
 }
+
+
+export const useGameStatusEffect = (
+  gameStatus: number,
+  level: number,
+  setScore: (value: number) => void,
+  setInput: (value: string) => void,
+  setSecondsLeft: (value: number) => void,
+  setRandomNumbers: (value: number[]) => void,
+  setgameStatus: (value: number) => void,
+  generateRandomArray: (value: number) => number[]
+  ) => {
+  useEffect(() => {
+    if (gameStatus == 1 || gameStatus == 2) {
+      setScore(0);
+      setInput('');
+      setSecondsLeft(10 + Math.floor(level * 0.1));
+      if (gameStatus == 1) {setRandomNumbers(generateRandomArray(3+level));}
+      setgameStatus(0);
+    }
+  }, [gameStatus]);
+}
