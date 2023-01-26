@@ -1,13 +1,11 @@
 const Display = (
   props: {
-    randomNumbers: number[]; //Array<number>
+    randomNumbers: number[];
     gameStatus: number;
     secondsLeft: number;
     score: number;
   }
   ) => {
-
-  //props.gameStatus == 1 && 
 
     return (
         <article id="randomdisplay">
