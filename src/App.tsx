@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import './App.scss';
 import { generateRandomArray, onlyAllowNumbers } from './scripts/script';
 import { useInputEffect, useLevelEffect, useGameStatusEffect } from './scripts/myUseEffects';
