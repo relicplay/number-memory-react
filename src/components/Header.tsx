@@ -1,5 +1,4 @@
 
-
 const Header = () => 
     <header>
         <h1 className="headertitle">Memorize</h1>
