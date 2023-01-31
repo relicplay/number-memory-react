@@ -11,7 +11,7 @@ const Display = (
         <article id="randomdisplay">
         
         {props.randomNumbers.map((e, index) => {
-            const imgPath = `images/${e}.png`;
+            const imgPath = `/images/${e}.png`;
             const id = `image${index}`;
         return (
           <img
