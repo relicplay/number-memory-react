@@ -1,7 +1,7 @@
 
 import Button from './Button';
 
-const Buttons = (
+const ButtonCollection = (
     props: {
         score: number;
         gameStatus: number;
@@ -28,4 +28,4 @@ const Buttons = (
     )
 };
 
-export default Buttons;
+export default ButtonCollection;

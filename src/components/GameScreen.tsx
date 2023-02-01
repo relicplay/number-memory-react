@@ -1,7 +1,7 @@
 import Start from './Start';
 import Loader from './Loader';
 import Display from './Display';
-import Buttons from './Buttons';
+import ButtonCollection from './ButtonCollection';
 import Controls from './Controls';
 
 const GameScreen = (
@@ -30,7 +30,7 @@ const GameScreen = (
         {props.secondsLeft <= 0 ? (
           <article className="controls">
             <Controls level={props.level} gameStatus={props.gameStatus} input={props.input} randomNumbers={props.randomNumbers} inputRef={props.inputRef} handleChange={props.handleChange}/>
-            <Buttons score={props.score} changeLevel={props.changeLevel} gameStatus={props.gameStatus} setgameStatus={props.setgameStatus} level={props.level} maxLevel={props.maxLevel} randomNumbers={props.randomNumbers}/>
+            <ButtonCollection score={props.score} changeLevel={props.changeLevel} gameStatus={props.gameStatus} setgameStatus={props.setgameStatus} level={props.level} maxLevel={props.maxLevel} randomNumbers={props.randomNumbers}/>
           </article>
         )
         : (

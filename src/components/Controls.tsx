@@ -42,7 +42,7 @@ const Controls = (
               onDrop={(e) => restrictInput(e)}
               onDrag={(e) => restrictInput(e)}
               />
-              </>
+        </>
     )
 };
 
