@@ -1,4 +1,5 @@
 import { useTimerEffect } from '../scripts/myUseEffects';
+import Button from './Button';
 
 const Loader = (
   props: {
@@ -15,7 +16,7 @@ const Loader = (
             <span id="counter">{props.secondsLeft}</span>
         </div>
         <span className="loadertext">Memorize the numbers!</span>
-        <button className="button" id="skipbutton" onClick={() => props.setSecondsLeft(0)}>Skip</button>
+        <Button title="Skip" id="skipbutton" onClick={() => props.setSecondsLeft(0)} />
         </article>
     )
 };

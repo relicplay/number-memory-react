@@ -15,8 +15,8 @@ const Buttons = (
 
     return (
         <div className="buttonwrapper">
-            <Button className="button" title="Retry" id="retrybutton" onClick={() => props.setgameStatus(2)} isDisabled={props.gameStatus > 3} />
-            <Button className="button" title="Reset" id="resetbutton" onClick={() => props.setgameStatus(1)} isDisabled={props.gameStatus > 3} />
+            <Button title="Retry" id="retrybutton" onClick={() => props.setgameStatus(2)} isDisabled={props.gameStatus > 3} />
+            <Button title="Reset" id="resetbutton" onClick={() => props.setgameStatus(1)} isDisabled={props.gameStatus > 3} />
             <Button
             className={`button ${props.level > props.maxLevel ? 'hidden' : ''}`}
             title="Next"

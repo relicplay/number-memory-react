@@ -1,3 +1,4 @@
+import Button from './Button';
 
 const Start = (
     props: {
@@ -9,7 +10,7 @@ const Start = (
     ) => {
 
     return (<section className="startscreen">
-    <button id="startbutton" className="button" onClick={() => props.setgameStatus(1)}>Start</button>
+    <Button title="Start" id="startbutton" onClick={() => props.setgameStatus(1)} />
     <div className="slidercontainer">
         <h1>Begin at Level:</h1>
         <input type="range" min="1" max={props.maxLevel} value={props.level} className="slider" id="levelslider" step="1" autoComplete="off" 

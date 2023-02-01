@@ -2,11 +2,11 @@
 const Button = (
     props:
     {
-      className: string,
+      className?: string;
       title: string;
       id: string;
       onClick: () => void;
-      isDisabled: boolean;
+      isDisabled?: boolean;
     }
 ) => 
     <button className={props.className} id={props.id} onClick={props.onClick} disabled={props.isDisabled}>
