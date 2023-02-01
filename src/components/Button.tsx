@@ -9,7 +9,7 @@ const Button = (
       isDisabled?: boolean;
     }
 ) => 
-    <button className={props.className} id={props.id} onClick={props.onClick} disabled={props.isDisabled}>
+    <button className={props.className || "button"} id={props.id} onClick={props.onClick} disabled={props.isDisabled}>
         {props.title}
     </button>
 ;
