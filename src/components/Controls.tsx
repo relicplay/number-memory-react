@@ -9,7 +9,6 @@ const Controls = (
       input: string;
       randomNumbers: number[];
       inputRef: React.RefObject<HTMLInputElement>;
-      //handleChange: (event: React.ChangeEvent<HTMLInputElement>, setInput: (value: string) => string, onlyAllowNumbers: (value: string) => string) => void;
       handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     }
   ) => {
