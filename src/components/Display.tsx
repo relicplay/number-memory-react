@@ -11,7 +11,9 @@ const Display = (
         <article id="randomdisplay">
         
         {props.randomNumbers.map((e, index) => {
-            const imgPath = `/images/${e}.png`;
+            //const imgPath = `/images/${e}.png`;
+            //Having "homepage" in package.json prevents images from showing. The code below fixes this:
+            const imgPath = `${process.env.PUBLIC_URL}/images/${e}.png`;
             const id = `image${index}`;
         return (
           <img
