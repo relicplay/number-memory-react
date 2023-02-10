@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/number-memory-react/static/css/main.5cc96cd1.css",
-    "main.js": "/number-memory-react/static/js/main.294dcd49.js",
+    "main.js": "/number-memory-react/static/js/main.d58a2ee3.js",
     "static/js/787.5a26f3b6.chunk.js": "/number-memory-react/static/js/787.5a26f3b6.chunk.js",
     "index.html": "/number-memory-react/index.html",
     "main.5cc96cd1.css.map": "/number-memory-react/static/css/main.5cc96cd1.css.map",
-    "main.294dcd49.js.map": "/number-memory-react/static/js/main.294dcd49.js.map",
+    "main.d58a2ee3.js.map": "/number-memory-react/static/js/main.d58a2ee3.js.map",
     "787.5a26f3b6.chunk.js.map": "/number-memory-react/static/js/787.5a26f3b6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5cc96cd1.css",
-    "static/js/main.294dcd49.js"
+    "static/js/main.d58a2ee3.js"
   ]
 }
